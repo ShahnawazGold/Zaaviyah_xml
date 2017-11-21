@@ -1,0 +1,19 @@
+github command line
+
+
+
+
+git init
+git add <folder> -A
+git commit -m "first commit"
+git remote add origin https://github.com/ShahnawazGold/Android_work_Zaaviyah.git
+git push -u origin master
+
+
+
+echo "# IOS" >> README.md
+git init
+git add README.md
+git commit -m "first commit"
+git remote add origin https://github.com/ShahnawazGold/IOS.git
+git push -u origin master

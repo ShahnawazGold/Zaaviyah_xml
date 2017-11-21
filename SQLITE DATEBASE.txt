@@ -1,0 +1,108 @@
+SQLITE DATEBASE 
+
+
+=====================SQLite - Data Type===================
+
+SQLite Storage Classes
+
+Each value stored in an SQLite database has one of the following storage 
+
+
+
+1	NULL
+
+The value is a NULL value.
+
+2	INTEGER
+
+The value is a signed integer, stored in 1, 2, 3, 4, 6, or 8 bytes depending on the magnitude of the value.
+
+3	REAL
+
+The value is a floating point value, stored as an 8-byte IEEE floating point number.
+
+4	TEXT
+
+The value is a text string, stored using the database encoding (UTF-8, UTF-16BE or UTF-16LE)
+
+5	BLOB
+
+The value is a blob of data, stored exactly as it was input.
+
+=============================SQLite Affinity Typ======================
+
+SQLite supports the concept of type affinity on columns. 
+Any column can still store any type of data but the preferred storage class for a column is called its affinity. Each table column 
+in an SQLite3 database is assigned one of the following type affinities
+
+
+
+1	TEXT
+		
+		This column stores all data using storage classes NULL, TEXT or BLOB.
+
+2	NUMERIC
+
+		This column may contain values using all five storage classes.
+
+3	INTEGER
+
+		Behaves the same as a column with NUMERIC affinity, with an exception in a CAST expression.
+
+4	REAL
+
+		Behaves like a column with NUMERIC affinity except that it forces integer values into floating point representation.
+
+5	NONE
+
+		A column with affinity NONE does not prefer one storage class over another and no attempt is made to coerce data from one storage class into another.
+
+==========================SQLite Affinity and Type Names================
+
+Data Type		Affinity
+INT
+INTEGER
+TINYINT
+SMALLINT
+MEDIUMINT         	INTEGER
+BIGINT
+UNSIGNED BIG INT
+INT2
+INT8
+		
+CHARACTER(20)
+VARCHAR(255)
+VARYING CHARACTER(255)	``TEXT
+NCHAR(55)
+NATIVE CHARACTER(70)
+NVARCHAR(100)
+TEXT
+CLOB
+
+BLOB
+no datatype specified    NONE
+
+REAL
+DOUBLE
+DOUBLE PRECISION       	REAL
+FLOAT
+
+NUMERIC  
+DECIMAL(10,5)         ` NUMERIC
+BOOLEAN
+DATE
+DATETIME
+
+==================Boolean Datatype===============
+
+QLite does not have a separate Boolean storage class. Instead, 
+Boolean values are stored as integers 0 (false) and 1 (true).
+
+=====================Date and Time Datatype===============
+
+
+
+
+
+
+

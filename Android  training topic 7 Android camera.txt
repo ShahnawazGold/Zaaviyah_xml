@@ -1,0 +1,74 @@
+Android - Camera
+
+
+These are the following two ways, in which you can use camera in your application
+
+Using existing android camera application in our application
+
+Directly using Camera API provided by android in our applicatio
+
+
+========
+
+==================Using existing android camera application in our application==========
+
+You will use MediaStore.ACTION_IMAGE_CAPTURE to 
+launch an existing camera application installed on your phone.
+
+
+Intent intent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
+
+
+1	ACTION_IMAGE_CAPTURE_SECURE
+
+		It returns the image captured from the camera , when the device is secured
+
+2	ACTION_VIDEO_CAPTURE
+
+		It calls the existing video application in android to capture video
+
+3	EXTRA_SCREEN_ORIENTATION
+
+		It is used to set the orientation of the screen to vertical or landscape
+
+4	EXTRA_FULL_SCREEN
+
+		It is used to control the user interface of the ViewImage
+
+5	INTENT_ACTION_VIDEO_CAMERA
+
+		This intent is used to launch the camera in the video mode
+
+6	EXTRA_SIZE_LIMIT
+
+		It is used to specify the size limit of video or image capture size
+
+
+====================function startActivityForResult() ==========
+
+startActivityForResult(intent,0)
+
+
+============================================
+1	startActivityForResult(Intent intent, int requestCode, Bundle options)
+
+		It starts an activity , but can take extra bundle of options with it
+
+2	startActivityFromChild(Activity child, Intent intent, int requestCode)
+
+				It launch the activity when your activity is child of any other activity
+
+3	startActivityFromChild(Activity child, Intent intent, int requestCode, Bundle options)
+
+				It work same as above , but it can take extra values in the shape of bundle with it
+
+4	startActivityFromFragment(Fragment fragment, Intent intent, int requestCode)
+
+		It launches activity from the fragment you are currently inside
+
+5	startActivityFromFragment(Fragment fragment, Intent intent, int requestCode, Bundle options)
+
+It not only launches the activity from the fragment , but can take extra values with it
+
+
+

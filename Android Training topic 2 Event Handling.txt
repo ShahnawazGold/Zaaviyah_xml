@@ -1,0 +1,251 @@
+Android Training topic 3 302 Event Handling
+
+
+
+
+onClick()
+	
+OnClickListener()
+
+		This is called when the user either clicks or touches or focuses upon any widget like button, text, image etc. You will use onClick() event handler to handle such event.
+
+onLongClick()	
+
+OnLongClickListener()
+
+		This is called when the user either clicks or touches or focuses upon any widget like button, text, image etc. for one or more seconds. You will use onLongClick() event handler to handle such event.
+
+onFocusChange()	
+OnFocusChangeListener()
+
+		This is called when the widget looses its focus ie. user goes away from the view item. You will use onFocusChange() event handler to handle such event.
+
+onKey()	
+OnFocusChangeListener()
+
+		This is called when the user is focused on the item and presses or releases a hardware key on the device. You will use onKey() event handler to handle such event.
+
+onTouch()	
+OnTouchListener()
+
+		This is called when the user presses the key, releases the key, or any movement gesture on the screen. You will use onTouch() event handler to handle such event.
+
+onMenuItemClick()	
+OnMenuItemClickListener()
+
+		This is called when the user selects a menu item. You will use onMenuItemClick() event handler to handle such event.
+
+onCreateContextMenu()	
+onCreateContextMenuItemListener()
+
+		This is called when the context menu is being built(as the result of a sustained "long click)
+
+
+
+===========================
+
+public boolean onTouchEvent(motionEvent event){
+   switch(event.getAction()){
+
+      case TOUCH_DOWN:
+
+      Toast.makeText(this,"you have clicked down Touch button",Toast.LENTH_LONG).show();
+
+      break();
+   
+      case TOUCH_UP:
+
+      Toast.makeText(this,"you have clicked up touch button",Toast.LENTH_LONG).show();
+      break;
+   
+      case TOUCH_MOVE:
+      Toast.makeText(this,"you have clicked move touch button"Toast.LENTH_LONG).show();
+      break;
+   }
+   return super.onTouchEvent(event) ;
+}
+
+
+=============================
+package com.example.myapplication;
+
+import android.app.ProgressDialog;
+import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
+import android.view.View;
+import android.widget.Button;
+import android.widget.TextView;
+
+public class MainActivity extends ActionBarActivity {
+   private ProgressDialog progress;
+   Button b1,b2;
+
+   @Override
+   protected void onCreate(Bundle savedInstanceState) {
+      super.onCreate(savedInstanceState);
+      setContentView(R.layout.activity_main);
+      progress = new ProgressDialog(this);
+
+      b1=(Button)findViewById(R.id.button);
+      b2=(Button)findViewById(R.id.button2);
+      b1.setOnClickListener(new View.OnClickListener() {
+         
+         @Override
+         public void onClick(View v) {
+            TextView txtView = (TextView) findViewById(R.id.textView);
+            txtView.setTextSize(25);
+         }
+      });
+
+      b2.setOnClickListener(new View.OnClickListener() {
+         
+         @Override
+         public void onClick(View v) {
+            TextView txtView = (TextView) findViewById(R.id.textView);
+            txtView.setTextSize(55);
+         }
+      });
+   }
+}
+===========================
+
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout 
+   xmlns:android="http://schemas.android.com/apk/res/android"
+   xmlns:tools="http://schemas.android.com/tools"
+   android:layout_width="match_parent"
+   android:layout_height="match_parent"
+   android:paddingBottom="@dimen/activity_vertical_margin"
+   android:paddingLeft="@dimen/activity_horizontal_margin"
+   android:paddingRight="@dimen/activity_horizontal_margin"
+   android:paddingTop="@dimen/activity_vertical_margin"
+   tools:context=".MainActivity">
+   
+   <TextView
+      android:id="@+id/textView1"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:text="Event Handling "
+      android:layout_alignParentTop="true"
+      android:layout_centerHorizontal="true"
+      android:textSize="30dp"/>
+      
+   <TextView
+      android:id="@+id/textView2"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:text="Tutorials point "
+      android:textColor="#ff87ff09"
+      android:textSize="30dp"
+      android:layout_above="@+id/imageButton"
+      android:layout_centerHorizontal="true"
+      android:layout_marginBottom="40dp" />
+      
+   <ImageButton
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:id="@+id/imageButton"
+      android:src="@drawable/abc"
+      android:layout_centerVertical="true"
+      android:layout_centerHorizontal="true" />
+      
+   <Button
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:text="Small font"
+      android:id="@+id/button"
+      android:layout_below="@+id/imageButton"
+      android:layout_centerHorizontal="true" />
+      
+   <Button
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:text="Large Font"
+      android:id="@+id/button2"
+      android:layout_below="@+id/button"
+      android:layout_alignRight="@+id/button"
+      android:layout_alignEnd="@+id/button" />
+      
+   <TextView
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:text="Hello World!"
+      android:id="@+id/textView"
+      android:layout_below="@+id/button2"
+      android:layout_centerHorizontal="true"
+      android:textSize="25dp" />
+      
+</RelativeLayout>
+
+
+
+========================
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout 
+   xmlns:android="http://schemas.android.com/apk/res/android"
+   xmlns:tools="http://schemas.android.com/tools"
+   android:layout_width="match_parent"
+   android:layout_height="match_parent"
+   android:paddingBottom="@dimen/activity_vertical_margin"
+   android:paddingLeft="@dimen/activity_horizontal_margin"
+   android:paddingRight="@dimen/activity_horizontal_margin"
+   android:paddingTop="@dimen/activity_vertical_margin"
+   tools:context=".MainActivity">
+   
+   <TextView
+      android:id="@+id/textView1"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:text="Event Handling "
+      android:layout_alignParentTop="true"
+      android:layout_centerHorizontal="true"
+      android:textSize="30dp"/>
+      
+   <TextView
+      android:id="@+id/textView2"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:text="Tutorials point "
+      android:textColor="#ff87ff09"
+      android:textSize="30dp"
+      android:layout_above="@+id/imageButton"
+      android:layout_centerHorizontal="true"
+      android:layout_marginBottom="40dp" />
+      
+   <ImageButton
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:id="@+id/imageButton"
+      android:src="@drawable/abc"
+      android:layout_centerVertical="true"
+      android:layout_centerHorizontal="true" />
+      
+   <Button
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:text="Small font"
+      android:id="@+id/button"
+      android:layout_below="@+id/imageButton"
+      android:layout_centerHorizontal="true" />
+      
+   <Button
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:text="Large Font"
+      android:id="@+id/button2"
+      android:layout_below="@+id/button"
+      android:layout_alignRight="@+id/button"
+      android:layout_alignEnd="@+id/button" />
+      
+   <TextView
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:text="Hello World!"
+      android:id="@+id/textView"
+      android:layout_below="@+id/button2"
+      android:layout_centerHorizontal="true"
+      android:textSize="25dp" />
+      
+</RelativeLayout>
+
+

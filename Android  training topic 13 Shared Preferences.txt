@@ -1,0 +1,227 @@
+Shared Preferences
+
+==================
+
+ One of this way is called Shared Preferences. 
+Shared Preferences allow you to save and retrieve data in the form of key,value pair.
+
+==================
+
+SharedPreferences sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
+
+====================
+
+
+1	MODE_APPEND
+
+		This will append the new preferences with the already existing preferences
+
+2	MODE_ENABLE_WRITE_AHEAD_LOGGING
+
+		Database open flag. When it is set , it would enable write ahead logging by default
+
+3	MODE_MULTI_PROCESS
+
+		This method will check for modification of preferences even if the sharedpreference instance has already been loaded
+
+4	MODE_PRIVATE
+
+		By setting this mode, the file can only be accessed using calling application
+
+5	MODE_WORLD_READABLE
+
+		This mode allow other application to read the preferences
+
+6	MODE_WORLD_WRITEABLE
+
+		This mode allow other application to write the preferences
+
+
+
+======================
+
+
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background"
+
+    tools:context="com.zaaviyah.zaaviyah_sharedpreferences.MainActivity">
+
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="13dp"
+        android:text="ZAAVIYAH"
+        android:textAlignment="center"
+        android:textColor="@color/colorPrimaryDark"
+        android:textSize="30dp"
+        android:textStyle="bold" />
+
+    <EditText
+        android:id="@+id/editText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="67dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="Name"
+        android:textAlignment="center"
+        android:textColor="@android:color/background_light"
+        android:textStyle="bold"
+        android:layout_below="@+id/textView"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <EditText
+        android:id="@+id/editText2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/editText"
+        android:layout_marginTop="40dp"
+
+        android:ems="10"
+        android:text="Phone"
+        android:textAlignment="center"
+        android:textColor="@android:color/background_light"
+        android:textSize="23dp"
+        android:textStyle="bold" />
+
+    <EditText
+        android:id="@+id/editText3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/editText2"
+        android:layout_marginTop="37dp"
+
+        android:ems="10"
+        android:text="Email"
+        android:textAlignment="center"
+        android:textColor="@android:color/background_light"
+        android:textStyle="bold" />
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="68dp"
+        android:background="@android:color/transparent"
+        android:backgroundTint="@android:color/transparent"
+        android:text="SAVE"
+        android:textAlignment="center"
+        android:textColor="@android:color/background_light"
+        android:textStyle="bold" />
+
+
+</RelativeLayout>
+==============================================
+
+
+package com.zaaviyah.zaaviyah_sharedpreferences;
+
+import android.content.Context;
+import android.content.SharedPreferences;
+import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Toast;
+
+public class MainActivity extends AppCompatActivity {
+
+
+
+    EditText ed1,ed2,ed3;
+    Button b1;
+
+
+    public static final String MyPREFERENCES  = "myprefance";
+    public static final String Name = "nameKey";
+    public static final String Phone = "phoneKey";
+    public static final String Email = "emailKey";
+
+    SharedPreferences sharedpreferences;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        ed1=(EditText)findViewById(R.id.editText);
+        ed2=(EditText)findViewById(R.id.editText2);
+        ed3=(EditText)findViewById(R.id.editText3);
+
+        b1=(Button)findViewById(R.id.button);
+
+        sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
+
+        b1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String name = ed1.getText().toString();
+                String phone = ed2.getText().toString();
+                String email = ed3.getText().toString();
+
+                SharedPreferences.Editor editor = sharedpreferences.edit();
+
+                editor.putString(Name, name);
+                editor.putString(Phone, phone);
+                editor.putString(Email, email);
+                editor.commit();
+                Toast.makeText(MainActivity.this,"Thanks to ",Toast.LENGTH_LONG).show();
+
+            }
+        });
+
+    }
+}
+
+Editor editor = sharedpreferences.edit();
+editor.putString("key", "value");
+editor.commit();
+
+================
+
+1	apply()
+
+It is an abstract method. It will commit your changes back from editor to the sharedPreference object you are calling
+
+2	clear()
+
+It will remove all values from the editor
+
+3	remove(String key)
+
+It will remove the value whose key has been passed as a parameter
+
+4	putLong(String key, long value)
+
+It will save a long value in a preference editor
+
+5	putInt(String key, int value)
+
+It will save a integer value in a preference editor
+
+6	putFloat(String key, float value)
+
+It will save a float value in a preference editor
+
+==============
+
+
+

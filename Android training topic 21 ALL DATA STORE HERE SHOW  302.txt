@@ -1,0 +1,85 @@
+Android training topic 4 ALL DATA STORE HERE SHOW  302
+
+1) SharedPrefance
+
+2) Internal Store 
+
+3) external store 
+
+4) Sqlit data
+
+5) net working 
+
+=====================================sharedPrefnce ======================
+
+package com.zaaviyah.zaaviyah_datastore;
+
+import android.content.Context;
+import android.content.SharedPreferences;
+import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
+import android.widget.Toast;
+
+public class MainActivity extends AppCompatActivity {
+
+    EditText editFood,editShopping,editFuel,editPhone;
+    TextView PrivecExpance ;
+    Button calculate;
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+
+        /// HERE coding start
+
+        editFood = (EditText) findViewById(R.id.editFood);
+         editShopping = (EditText) findViewById(R.id.editShoping);
+         editFuel = (EditText) findViewById(R.id.editFual);
+         editPhone = (EditText) findViewById(R.id.editTelephone);
+
+        PrivecExpance   = (TextView) findViewById(R.id.textView2);
+
+        calculate  = (Button)findViewById(R.id.btn1);
+
+
+        // YAHHA CARETE KRTY HAIN HAY KNE SAVING VALUE SHARED PREFNCE agimn
+        SharedPreferences  sharedPrefnce = getSharedPreferences("EXPANC", Context.MODE_PRIVATE);
+        PrivecExpance.setText(String.valueOf(sharedPrefnce.getInt("expncs",0)));
+        // mean valuse is zero here showa
+
+
+        calculate.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View view) {
+                int expance = Integer.valueOf(editFood.getText().toString() ) +Integer.valueOf(editShopping.getText().toString() )+Integer.valueOf(editFuel.getText().toString() )
+                        +Integer.valueOf(editPhone.getText().toString() );
+
+
+                // yeh value set krny ky ly use krty hay.. jb text sy dekye gay
+                Toast.makeText(MainActivity.this, "TOTAL expance "+String.valueOf(expance), Toast.LENGTH_SHORT).show();
+                PrivecExpance.setText("TOTAL expance "+String.valueOf(expance));
+
+
+               // YAHHA CARETE KRTY HAIN HAY KNE SAVING VALUE SHARED PREFNCE
+                SharedPreferences  sharedPrefnce = getSharedPreferences("EXPANC", Context.MODE_PRIVATE);
+
+                SharedPreferences.Editor edit = sharedPrefnce.edit();
+                edit.putInt("EXP",expance);
+                edit.apply();
+
+
+
+            }
+        });
+
+
+
+
+    }
+}

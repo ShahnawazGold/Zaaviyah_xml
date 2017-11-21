@@ -1,0 +1,193 @@
+======Android - Image Switcher===========
+
+
+===================
+Sometimes you don't want an image to appear abruptly on the screen, rather you want to apply some kind of animation to the image when it transitions from one image to another.
+
+<ImageSwitcher
+   android:id="@+id/imageSwitcher1"
+   android:layout_width="wrap_content"
+   android:layout_height="wrap_content"
+   android:layout_centerHorizontal="true"
+   android:layout_centerVertical="true" >
+</ImageSwitcher>
+
+
+================/=================
+
+private ImageSwitcher imageSwitcher;
+imageSwitcher = (ImageSwitcher)findViewById(R.id.imageSwitcher1);
+
+
+
+=================================
+
+imageSwitcher.setImageResource(R.drawable.ic_launcher);
+imageSwitcher.setFactory(new ViewFactory() {
+   public View makeView() {
+      ImageView myView = new ImageView(getApplicationContext());
+      return myView;
+   }
+}
+
+
+=====================
+Animation in = AnimationUtils.loadAnimation(this,android.R.anim.slide_in_left);
+imageSwitcher.setInAnimation(in);
+imageSwitcher.setOutAnimation(out); 
+
+=========================
+
+1	setImageDrawable(Drawable drawable)
+
+		Sets an image with image switcher. The image is passed in the form of bitmap
+
+2	setImageResource(int resid)
+
+		Sets an image with image switcher. The image is passed in the form of integer id
+
+3	setImageURI(Uri uri)
+
+		Sets an image with image switcher. THe image is passed in the form of URI
+
+4	ImageSwitcher(Context context, AttributeSet attrs)
+
+		Returns an image switcher object with already setting some attributes passed in the method
+
+5	onInitializeAccessibilityEvent (AccessibilityEvent event)
+
+		Initializes an AccessibilityEvent with information about this View which is the event source
+6	onInitializeAccessibilityNodeInfo (AccessibilityNodeInfo info)
+
+		Initializes an AccessibilityNodeInfo with information about this view
+
+
+
+
+==============================/========================
+
+
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/imagesbg"
+    tools:context="com.zaaviyah.zaaviyah_imageswitcher.MainActivity">
+
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:layout_marginTop="35dp"
+        android:text="Zaaviyah Solutions"
+        android:textAlignment="center"
+        android:textAllCaps="true"
+        android:textColor="@android:color/background_light"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+
+    <ImageSwitcher
+        android:id="@+id/imageSwitcher"
+        style="@style/AppTheme"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_above="@+id/button2"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="48dp"
+         /> `           
+
+
+    <Button
+        android:id="@+id/button"
+        style="@style/AlertDialog.AppCompat"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textView"
+        android:layout_centerHorizontal="true"
+        android:background="@android:drawable/ic_media_rew"
+        android:backgroundTint="@android:color/background_light"
+        android:textColor="@android:color/background_light"
+        android:textSize="22dp" />
+
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/button"
+        android:layout_alignParentBottom="true"
+        android:layout_alignStart="@+id/button"
+        android:background="@android:drawable/ic_media_ff"
+        android:backgroundTint="@android:color/background_light"
+        android:textSize="22dp" />
+
+
+
+</RelativeLayout>
+=======================================================
+package com.zaaviyah.zaaviyah_imageswitcher;
+
+import android.support.v7.app.ActionBar;
+import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.ImageSwitcher;
+import android.widget.ImageView;
+import android.widget.Toast;
+import android.widget.ViewSwitcher;
+
+
+public class MainActivity extends AppCompatActivity {
+
+    private ImageSwitcher sw;
+    private Button b1,b2;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        b1 = (Button) findViewById(R.id.button);
+        b2 = (Button) findViewById(R.id.button2);
+
+        sw = (ImageSwitcher) findViewById(R.id.imageSwitcher);
+
+
+        // SET FACTORY METHOD HERS
+        sw.setFactory(new ViewSwitcher.ViewFactory() {
+            @Override
+            public View makeView() {
+
+                ImageView myView = new ImageView(getApplicationContext());
+                myView.setScaleType(ImageView.ScaleType.FIT_CENTER);
+                myView.setLayoutParams(new ImageSwitcher.LayoutParams(ActionBar.LayoutParams.WRAP_CONTENT, ActionBar.LayoutParams.WRAP_CONTENT));
+                return myView;
+            }
+        });
+
+        b1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(getApplicationContext(), "previous Image",
+                        Toast.LENGTH_LONG).show();sw.setImageResource(R.drawable.zavoo);
+            }
+        });
+        b2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(getApplicationContext(), "Next Image",
+                        Toast.LENGTH_LONG).show(); sw.setImageResource(R.drawable.zavoo);
+            }
+        });
+    }
+}
+
+=============================
+

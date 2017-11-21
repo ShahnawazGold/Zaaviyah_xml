@@ -1,0 +1,53 @@
+Session Management
+
+=========
+ession help you when want to store user data outside your application, 
+so that when the next time user use your application,
+
+==============
+
+======================Shared Preferences===================
+
+Shared Preferences allow you to save and retrieve data in the form of key,value pair. In order to use shared preferences,
+ you have to call a method getSharedPreferences()
+
+
+SharedPreferences sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
+
+
+===============
+Editor editor = sharedpreferences.edit();
+editor.putString("key", "value");
+editor.commit();
+
+
+1	apply()
+
+It is an abstract method. It will commit your changes back from editor to the sharedPreference object you are calling
+
+2	clear()
+
+It will remove all values from the editor
+
+3	remove(String key)
+
+It will remove the value whose key has been passed as a parameter
+
+4	putLong(String key, long value)
+
+It will save a long value in a preference editor
+
+5	putInt(String key, int value)
+
+It will save a integer value in a preference editor
+
+6	putFloat(String key, float value)
+
+It will save a float value in a preference editor
+
+
+=====================
+
+=======================Session Management through Shared Preferences=================
+
+

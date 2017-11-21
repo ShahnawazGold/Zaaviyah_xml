@@ -1,0 +1,91 @@
+Android - WebView
+
+==================
+WebView is a view that display web pages inside your application. You can also specify HTML string and can show it inside your application using WebView.
+ WebView makes turns your application to a web application.
+
+<WebView  xmlns:android="http://schemas.android.com/apk/res/android"
+   android:id="@+id/webview"
+   android:layout_width="fill_parent"
+   android:layout_height="fill_parent"
+/>
+
+
+====================
+
+WebView browser = (WebView) findViewById(R.id.webview);
+
+
+================
+loadUrl(String url)
+
+====================
+
+browser.loadUrl("http://www.tutorialspoint.com");
+
+
+Apart from just loading url, 
+you can have more control over your WebView by using the methods defined in WebView class
+
+
+====================================
+
+1	canGoBack()
+
+This method specifies the WebView has a back history item.
+
+2	canGoForward()
+
+This method specifies the WebView has a forward history item.
+
+3	clearHistory()
+
+This method will clear the WebView forward and backward history.
+
+4	destroy()
+
+This method destroy the internal state of WebView.
+
+
+
+
+
+
+5	findAllAsync(String find)
+
+This method find all instances of string and highlight them.
+
+6	getProgress()
+
+This method gets the progress of the current page.
+
+7	getTitle()
+
+This method return the title of the current page.
+
+8	getUrl()
+
+This method return the url of the current page.
+
+
+===================================================
+
+
+private class MyBrowser extends WebViewClient {
+   @Override
+   public boolean shouldOverrideUrlLoading(WebView view, String url) {
+      view.loadUrl(url);
+      return true;
+   }
+}
+
+
+========================
+
+
+
+
+
+
+
+
